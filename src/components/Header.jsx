@@ -13,11 +13,10 @@ function Header() {
         }}>
             <h1>Logo</h1>
             <div style={menuStyle}>
-                <a href="#">Home</a>
-                <a href="#">Home</a>
-                <a href="#">Home</a>
-                <a href="#">Home</a>
-                <a href="#">Home</a>
+                <a href="/">Home</a>
+                <a href="/products">Products</a>
+                <a href="/signup">Sign up</a>
+                <a href="/contact">Contact</a>
             </div>
 
         </header>

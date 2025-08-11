@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react"
+import Header from "./Header"
 
 
 
@@ -115,7 +116,6 @@ const MyProducts = () => {
     return (
         <div>
 
-            <h2>My Products</h2>
             <div>
                 {
                     loading ? (
@@ -130,13 +130,13 @@ const MyProducts = () => {
                                     <>
                                         {
                                             products.map((ele, index) => (
-                                                <div key={index}>
+                                                <a href={`/products/${ele.id}`} key={index}>
                                                     <img src={ele.image} alt="" width={200} />
                                                     <h2>{ele.title}</h2>
                                                     <p>{ele.price}</p>
                                                     <p>{ele.category}</p>
                                                     <p>{ele.description}</p>
-                                                </div>
+                                                </a>
                                             ))
                                         }
                                     </>
