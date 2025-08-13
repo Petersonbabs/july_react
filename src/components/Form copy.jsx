@@ -1,30 +1,26 @@
 import { useState } from "react"
-import { useNavigate } from "react-router-dom"
 
 
 const Form = () => {
     const [formData, setFormData] = useState({
         email: "",
         password: "",
-        name: "",
-        companyName: ""
+        fullName: ""
     })
     const [submitting, setSubmitting] = useState(false)
-    const navigate = useNavigate()
 
     const handleInput = (e) => {
         const { name, value } = e.target
         setFormData((prev) => ({
             ...prev, [name]: value
         }))
-        console.log(formData)
     }
 
     const handleSubmit = async (e) => {
         e.preventDefault()
         setSubmitting(true)
         try {
-            const res = await fetch("http://localhost:4000/users", {
+            const res = await fetch("https://fakestoreapi.com/users/", {
                 method: "POST",
                 body: JSON.stringify(formData),
                 headers: {
@@ -32,11 +28,6 @@ const Form = () => {
                 }
             })
             const data = await res.json()
-            if (data.status === "success") {
-                // window.location.href = "/signin"
-                alert("Welcome onboard! Redirecting...")
-                navigate("/signin")
-            }
             console.log(data)
         } catch (error) {
             console.log(error)
@@ -55,12 +46,8 @@ const Form = () => {
                     <input type="email" placeholder="joe@dev.com" id="email" name="email" onChange={handleInput} />
                 </div>
                 <div>
-                    <label htmlFor="name">Full name</label>
-                    <input type="text" placeholder="Elon musk" id="name" name="name" onChange={handleInput} />
-                </div>
-                <div>
-                    <label htmlFor="companyName">Company Name (optional)</label>
-                    <input type="text" placeholder="Elon Enterprise" id="companyName" name="companyName" onChange={handleInput} />
+                    <label htmlFor="fullName">Full name</label>
+                    <input type="text" placeholder="Elon musk" id="fullName" name="fullName" onChange={handleInput} />
                 </div>
                 <div>
                     <label htmlFor="password">Password</label>
@@ -69,7 +56,6 @@ const Form = () => {
 
                 <button disabled={submitting}>{submitting ? "Authenticating..." : "Create Account"}</button>
             </form>
-            <p>Have an account already? <a href="./signin">Login</a></p>
         </div>
     )
 }

@@ -9,6 +9,9 @@ import Header from "./components/Header"
 import Footer from "./components/Footer"
 import SIngleProduct from "./components/SIngleProduct"
 import LayoutWithHeader from "./components/LayoutWithHeader"
+import Signin from "./components/pages/Signin"
+import Dashboard from "./components/pages/Dashboard"
+import ProtectedRoutes from "./components/ProtectedRoutes"
 
 function App() {
   // * => wildcard
@@ -21,13 +24,17 @@ function App() {
     <>
       <BrowserRouter>
         <Routes>
-            <Route element={<LayoutWithHeader />}>
-              <Route path="/" element={<Homepage />} />
-              <Route path="/contact" element={<Contact />} />
-            </Route>
+          <Route element={<LayoutWithHeader />}>
+            <Route path="/" element={<Homepage />} />
+            <Route path="/contact" element={<Contact />} />
+          </Route>
           <Route path="/signup" element={<Signup />} />
+          <Route path="/signin" element={<Signin />} />
           <Route path="/products" element={<MyProducts />} />
           <Route path="/products/:id" element={<SIngleProduct />} />
+          <Route element={<ProtectedRoutes />}>
+            <Route path="/dashboard" element={<Dashboard />} />
+          </Route>
 
           <Route path="*" element={<NotFound />} />
         </Routes>

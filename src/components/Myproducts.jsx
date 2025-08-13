@@ -94,7 +94,7 @@ const MyProducts = () => {
     const fetchProducts = async () => {
         try {
             setLoading(true)
-            const res = await fetch("https://fakestoreapi.com/products")
+            const res = await fetch("http://localhost:4000/products")
             const data = await res.json()
             setProducts(data)
             console.log(data);

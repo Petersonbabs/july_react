@@ -16,6 +16,7 @@ function Header() {
                 <a href="/">Home</a>
                 <a href="/products">Products</a>
                 <a href="/signup">Sign up</a>
+                <a href="/signin">Login</a>
                 <a href="/contact">Contact</a>
             </div>
 
