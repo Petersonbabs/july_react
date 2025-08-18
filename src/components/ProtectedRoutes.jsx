@@ -2,15 +2,38 @@ import React, { useEffect, useState } from 'react'
 import { Outlet, useNavigate, Navigate } from 'react-router-dom'
 
 const ProtectedRoutes = () => {
-    const isAuthenticated = false; // Replace with your auth logic
+    // get the token
+    const [token, setToken] = useState(localStorage.getItem("token") || "")
+    const verifyToken = async () => {
+        try {
+            const res = await fetch(`${baseUrl}/users/verify-token`, {
+                headers: {
+                    authorization: `Bearer ${token}`
+                }
+            })
+            const data = await res.json()
+            console.log(data)
+            if (data.user) {
+                return data.user
+            } else {
+                return null
+            }
+
+        } catch (error) {
+            console.log(error)
+            return null
+        }
+    }
+    const user = verifyToken()
+    const baseUrl = import.meta.env.VITE_BASE_URL
+
     const navigate = useNavigate();
 
     useEffect(() => {
-        if (!isAuthenticated) {
-            console.log('Not authenticated, redirecting...');
+        if (!token || !user) {
             navigate("/signin", { replace: true });
         }
-    }, [isAuthenticated, navigate]);
+    }, [token, navigate]);
 
 
     return (
