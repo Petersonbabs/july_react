@@ -1,14 +1,17 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import Header from '../Header'
+import { authContext } from '../../contexts/AuthContexts'
+import Hero from '../Hero'
+import FeaturedProducts from '../FeaturedProducts'
 
 const Homepage = () => {
+    // STEP 3
+    const { user } = useContext(authContext)
+
     return (
-        <div style={{
-            height: "60vh",
-            border: "1px solid"
-        }}>
-            {/* <Header /> */}
-            <h1>Home Page</h1>
+        <div >
+            <Hero />
+            <FeaturedProducts />
         </div>
     )
 }

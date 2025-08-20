@@ -1,6 +1,11 @@
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 
+// STATE MANAGEMENT
+// Local state: useState
+// global state: context api
+// CONTEXT API
+// redux, zustand
 
 const Form = () => {
     const [formData, setFormData] = useState({
@@ -20,7 +25,7 @@ const Form = () => {
         console.log(formData)
     }
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = async (dddd) => {
         e.preventDefault()
         setSubmitting(true)
         try {
