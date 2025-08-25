@@ -14,6 +14,9 @@ import Dashboard from "./components/pages/Dashboard"
 import ProtectedRoutes from "./components/ProtectedRoutes"
 import AuthProvider from "./contexts/AuthContexts"
 import ProductProvider from "./contexts/ProductContext"
+import ThemeProvider from "./contexts/ThemeContext"
+import AddProductForm from "./components/AddProductForm"
+import { Toaster } from "sonner"
 
 function App() {
   // * => wildcard
@@ -27,23 +30,27 @@ function App() {
       <BrowserRouter>
         <AuthProvider>
           <ProductProvider>
-            <Header />
-          <Routes>
-            <Route element={<LayoutWithHeader />}>
-              <Route path="/" element={<Homepage />} />
-              <Route path="/contact" element={<Contact />} />
-            </Route>
-            <Route path="/signup" element={<Signup />} />
-            <Route path="/signin" element={<Signin />} />
-            <Route path="/products" element={<MyProducts />} />
-            <Route path="/products/:id" element={<SIngleProduct />} />
-            <Route element={<ProtectedRoutes />}>
-              <Route path="/dashboard" element={<Dashboard />} />
-            </Route>
+            <ThemeProvider>
+              <Header />
+              <Toaster richColors position="bottom-left" closeButton visibleToasts={2} />
+              <Routes>
+                <Route element={<LayoutWithHeader />}>
+                  <Route path="/" element={<Homepage />} />
+                  <Route path="/contact" element={<Contact />} />
+                </Route>
+                <Route path="/signup" element={<Signup />} />
+                <Route path="/signin" element={<Signin />} />
+                <Route path="/products" element={<MyProducts />} />
+                <Route path="/add-product" element={<AddProductForm />} />
+                <Route path="/products/:id" element={<SIngleProduct />} />
+                <Route element={<ProtectedRoutes />}>
+                  <Route path="/dashboard" element={<Dashboard />} />
+                </Route>
 
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-          <Footer />
+                <Route path="*" element={<NotFound />} />
+              </Routes>
+              <Footer />
+            </ThemeProvider>
           </ProductProvider>
         </AuthProvider>
       </BrowserRouter>
