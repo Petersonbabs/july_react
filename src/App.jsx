@@ -19,6 +19,7 @@ import AddProductForm from "./components/AddProductForm"
 import { Toaster } from "sonner"
 import AuthNotifier from "./components/pages/AuthNotifier"
 import VerifyToken from "./components/pages/VerifyToken"
+import LoginModal from "./components/LoginModal"
 
 function App() {
   // * => wildcard
@@ -34,6 +35,7 @@ function App() {
           <ProductProvider>
             <ThemeProvider>
               <Header />
+              <LoginModal />
               <Toaster richColors position="top-right" closeButton visibleToasts={2} />
               <Routes>
                 <Route element={<LayoutWithHeader />}>

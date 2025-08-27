@@ -2,6 +2,7 @@
 // PROVIDE THE CONTEXT WITH ITS VALUES
 // CONSUME / USE THE CONTEXT
 import { createContext, useState } from "react"
+import { toast } from "sonner"
 export const authContext = createContext()
 
 const AuthProvider = ({ children }) => {
@@ -13,6 +14,9 @@ const AuthProvider = ({ children }) => {
         status: ""
     })
     const [verifyingToken, setVerifyingToken] = useState(false)
+    const [openLoginModal, setOpenLoginModal] = useState(false)
+    const [pendingAction, setPendingAction] = useState(null)
+    const [submitting, setSubmitting] = useState(false)
 
     const baseUrl = import.meta.env.VITE_BASE_URL
 
@@ -31,8 +35,43 @@ const AuthProvider = ({ children }) => {
         }
     }
 
+    const login = async (formData) => {
+        setSubmitting(true)
+        try {
+            setTimeout(() => {
+                if (pendingAction) {
+                    pendingAction()
+                }
+                setOpenLoginModal(false)
+                setSubmitting(false)
+            }, 1000 * 3)
+            // const res = await fetch("http://localhost:4000/users/login", {
+            //     method: "POST",
+            //     body: JSON.stringify(formData),
+            //     headers: {
+            //         "Content-Type": "application/json"
+            //     }
+            // })
+            // const data = await res.json()
+            // if (data.status === "success") {
+            //     toast.success("Welcome back")
+            //     localStorage.setItem("token", data.token)
+            // }
+            // console.log(data)
+        } catch (error) {
+            console.log(error)
+        } finally {
+        }
+    }
+
     const value = {
         verifyToken,
+        setPendingAction,
+        setOpenLoginModal,
+        login,
+        pendingAction,
+        submitting,
+        openLoginModal,
         verifyingToken,
         verificationData
     }

@@ -1,11 +1,11 @@
 .signup-container,
 .signin-container {
-    border: 1px solid;
     padding: 1rem;
     border-radius: 8px;
     margin: 4rem auto;
     width: 90vw;
     max-width: 400px;
+    background-color: white;
 }
 
 .signup-container form,
