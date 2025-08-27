@@ -17,6 +17,8 @@ import ProductProvider from "./contexts/ProductContext"
 import ThemeProvider from "./contexts/ThemeContext"
 import AddProductForm from "./components/AddProductForm"
 import { Toaster } from "sonner"
+import AuthNotifier from "./components/pages/AuthNotifier"
+import VerifyToken from "./components/pages/VerifyToken"
 
 function App() {
   // * => wildcard
@@ -32,7 +34,7 @@ function App() {
           <ProductProvider>
             <ThemeProvider>
               <Header />
-              <Toaster richColors position="bottom-left" closeButton visibleToasts={2} />
+              <Toaster richColors position="top-right" closeButton visibleToasts={2} />
               <Routes>
                 <Route element={<LayoutWithHeader />}>
                   <Route path="/" element={<Homepage />} />
@@ -43,6 +45,9 @@ function App() {
                 <Route path="/products" element={<MyProducts />} />
                 <Route path="/add-product" element={<AddProductForm />} />
                 <Route path="/products/:id" element={<SIngleProduct />} />
+                {/* HERE */}
+                <Route path="/auth-notifier" element={<AuthNotifier />} />
+                <Route path="/verify/:token" element={<VerifyToken />} />
                 <Route element={<ProtectedRoutes />}>
                   <Route path="/dashboard" element={<Dashboard />} />
                 </Route>
